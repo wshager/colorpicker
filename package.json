@@ -1,0 +1,6 @@
+{
+    "name": "colorpicker",
+    "description": "Dojo/AMD wrapper for http://www.dematte.at/colorPicker/",
+    "version": 0.1,
+    "dojoBuild": "package.js"
+}
