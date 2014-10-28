@@ -1,5 +1,5 @@
 // wrapper around colorPicker http://www.dematte.at/colorPicker/
-define(["dojo/_base/declare"],function(declare){
+define([],function(){
 	
 	/*
 	 * colorPicker, JavaScript Color Picker (one-file version)
@@ -405,10 +405,12 @@ define(["dojo/_base/declare"],function(declare){
 		},
 		
 		X2RGB = function (hex) { // accepts array(r,g,b), 'rgb(r,g,b)', #0 - #123AEFxyz, 0 - 123AEFxyz, #2af, 2af
-			hex = (hex+'').replace(/[(^rgb\()]*[^a-fA-F0-9,]*/g,'').split(',');
-			if (hex.length == 3) return [+hex[0],+hex[1],+hex[2]];
-			hex+=''; if (hex.length == 3) {hex=hex.split(''); return [parseInt((hex[0]+hex[0]),16),parseInt((hex[1]+hex[1]),16),parseInt((hex[2]+hex[2]),16)]}
-			while(hex.length<6) hex='0'+hex; return [parseInt(hex.substr(0,2),16),parseInt(hex.substr(2,2),16),parseInt(hex.substr(4,2),16)]
+			hex += '';
+			var ca = hex.replace(/[(^rgba\()]*[^a-fA-F0-9,]*/g,'').split(',');
+			if (hex.match(/^rgba/) && ca.length == 4) ca.pop();
+			if (ca.length == 3) return [+ca[0],+ca[1],+ca[2]];
+			ca+=''; if (ca.length == 3) {ca=ca.split(''); return [parseInt((ca[0]+ca[0]),16),parseInt((ca[1]+ca[1]),16),parseInt((ca[2]+ca[2]),16)]}
+			while(ca.length<6) ca='0'+ca; return [parseInt(ca.substr(0,2),16),parseInt(ca.substr(2,2),16),parseInt(ca.substr(4,2),16)]
 		},
 		
 		RGB2HEX = function (r,g,b) {
